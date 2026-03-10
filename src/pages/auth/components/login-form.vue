@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { useAuth } from '@/composables/use-auth'
 
 import GitHubButton from './github-button.vue'
@@ -8,6 +9,25 @@ import TermsOfServiceButton from './terms-of-service-button.vue'
 import ToForgotPasswordLink from './to-forgot-password-link.vue'
 
 const { login, loading } = useAuth()
+
+// 表单数据
+const username = ref('admin')
+const password = ref('admin123')
+
+// 处理登录
+async function handleLogin() {
+  if (!username.value || !password.value) {
+    return
+  }
+  await login(username.value, password.value)
+}
+
+// 回车登录
+function handleKeyPress(event: KeyboardEvent) {
+  if (event.key === 'Enter') {
+    handleLogin()
+  }
+}
 </script>
 
 <template>
@@ -17,7 +37,7 @@ const { login, loading } = useAuth()
         Login
       </UiCardTitle>
       <UiCardDescription>
-        Enter your email and password below to log into your account.
+        Enter your username and password below to log into your account.
         Not have an account?
         <UiButton
           variant="link" class="px-0 text-muted-foreground"
@@ -29,24 +49,38 @@ const { login, loading } = useAuth()
     </UiCardHeader>
     <UiCardContent class="grid gap-4">
       <div class="grid gap-2">
-        <UiLabel for="email">
-          {{ $t('email') }}
+        <UiLabel for="username">
+          Username
         </UiLabel>
-        <UiInput id="email" type="email" placeholder="m@example.com" required />
+        <UiInput 
+          id="username" 
+          v-model="username"
+          type="text" 
+          placeholder="admin" 
+          required 
+          @keypress="handleKeyPress"
+        />
       </div>
       <div class="grid gap-2">
         <div class="flex items-center justify-between">
           <UiLabel for="password">
-            {{ $t('password') }}
+            Password
           </UiLabel>
           <ToForgotPasswordLink />
         </div>
-        <UiInput id="password" type="password" required placeholder="*********" />
+        <UiInput 
+          id="password" 
+          v-model="password"
+          type="password" 
+          required 
+          placeholder="*********" 
+          @keypress="handleKeyPress"
+        />
       </div>
 
-      <UiButton class="w-full" @click="login">
+      <UiButton class="w-full" :disabled="loading" @click="handleLogin">
         <UiSpinner v-if="loading" class="mr-2" />
-        {{ $t('login') }}
+        {{ loading ? 'Logging in...' : 'Login' }}
       </UiButton>
 
       <UiSeparator label="Or continue with" />
