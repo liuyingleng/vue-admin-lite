@@ -111,5 +111,29 @@
   "homePage": {
     "searchKeyWords": "Search Menu"
   },
-  "changeLanguage": "Change Language"
+  "changeLanguage": "Change Language",
+  "menu": {
+    "mainFeatures": "Main Features",
+    "dashboard": "Dashboard",
+    "systemPages": "System Pages",
+    "auth": "Authentication",
+    "signIn": "Sign In",
+    "signIn2": "Sign In (Two Column)",
+    "signUp": "Sign Up",
+    "forgotPassword": "Forgot Password",
+    "otp": "OTP",
+    "errors": "Error Pages",
+    "error401": "401 | Unauthorized",
+    "error403": "403 | Forbidden",
+    "error404": "404 | Not Found",
+    "error500": "500 | Server Error",
+    "error503": "503 | Maintenance",
+    "other": "Other",
+    "settings": "Settings",
+    "profile": "Profile",
+    "account": "Account",
+    "appearance": "Appearance",
+    "notifications": "Notifications",
+    "display": "Display"
+  }
 }

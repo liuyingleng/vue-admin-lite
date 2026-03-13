@@ -1,54 +1,57 @@
 import { BellDot, Bug, LayoutDashboard, Palette, PictureInPicture2, Settings, SquareUserRound, User, Wrench } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 
 import type { NavGroup } from '@/components/app-sidebar/types'
 
 export function useSidebar() {
-  const settingsNavItems = [
-    { title: '个人资料', url: '/settings/', icon: User },
-    { title: '账户设置', url: '/settings/account', icon: Wrench },
-    { title: '外观设置', url: '/settings/appearance', icon: Palette },
-    { title: '通知设置', url: '/settings/notifications', icon: BellDot },
-    { title: '显示设置', url: '/settings/display', icon: PictureInPicture2 },
-  ]
+  const { t } = useI18n()
 
-  const navData = ref<NavGroup[]>([
+  const settingsNavItems = computed(() => [
+    { title: t('menu.profile'), url: '/settings/', icon: User },
+    { title: t('menu.account'), url: '/settings/account', icon: Wrench },
+    { title: t('menu.appearance'), url: '/settings/appearance', icon: Palette },
+    { title: t('menu.notifications'), url: '/settings/notifications', icon: BellDot },
+    { title: t('menu.display'), url: '/settings/display', icon: PictureInPicture2 },
+  ])
+
+  const navData = computed<NavGroup[]>(() => [
     {
-      title: '主要功能',
+      title: t('menu.mainFeatures'),
       items: [
-        { title: '仪表盘', url: '/dashboard', icon: LayoutDashboard },
+        { title: t('menu.dashboard'), url: '/dashboard', icon: LayoutDashboard },
       ],
     },
     {
-      title: '系统页面',
+      title: t('menu.systemPages'),
       items: [
         {
-          title: '认证',
+          title: t('menu.auth'),
           icon: SquareUserRound,
           items: [
-            { title: '登录', url: '/auth/sign-in' },
-            { title: '登录(双栏)', url: '/auth/sign-in-2' },
-            { title: '注册', url: '/auth/sign-up' },
-            { title: '忘记密码', url: '/auth/forgot-password' },
-            { title: '验证码', url: '/auth/otp' },
+            { title: t('menu.signIn'), url: '/auth/sign-in' },
+            { title: t('menu.signIn2'), url: '/auth/sign-in-2' },
+            { title: t('menu.signUp'), url: '/auth/sign-up' },
+            { title: t('menu.forgotPassword'), url: '/auth/forgot-password' },
+            { title: t('menu.otp'), url: '/auth/otp' },
           ],
         },
         {
-          title: '错误页面',
+          title: t('menu.errors'),
           icon: Bug,
           items: [
-            { title: '401 | 未授权', url: '/errors/401' },
-            { title: '403 | 禁止访问', url: '/errors/403' },
-            { title: '404 | 页面未找到', url: '/errors/404' },
-            { title: '500 | 服务器错误', url: '/errors/500' },
-            { title: '503 | 维护中', url: '/errors/503' },
+            { title: t('menu.error401'), url: '/errors/401' },
+            { title: t('menu.error403'), url: '/errors/403' },
+            { title: t('menu.error404'), url: '/errors/404' },
+            { title: t('menu.error500'), url: '/errors/500' },
+            { title: t('menu.error503'), url: '/errors/503' },
           ],
         },
       ],
     },
     {
-      title: '其他',
+      title: t('menu.other'),
       items: [
-        { title: '设置', icon: Settings, items: settingsNavItems },
+        { title: t('menu.settings'), icon: Settings, items: settingsNavItems.value },
       ],
     },
   ])

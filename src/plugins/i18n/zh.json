@@ -111,5 +111,29 @@
   "homePage": {
     "searchKeyWords": "搜索菜单"
   },
-  "changeLanguage": "语言切换"
+  "changeLanguage": "语言切换",
+  "menu": {
+    "mainFeatures": "主要功能",
+    "dashboard": "仪表盘",
+    "systemPages": "系统页面",
+    "auth": "认证",
+    "signIn": "登录",
+    "signIn2": "登录(双栏)",
+    "signUp": "注册",
+    "forgotPassword": "忘记密码",
+    "otp": "验证码",
+    "errors": "错误页面",
+    "error401": "401 | 未授权",
+    "error403": "403 | 禁止访问",
+    "error404": "404 | 页面未找到",
+    "error500": "500 | 服务器错误",
+    "error503": "503 | 维护中",
+    "other": "其他",
+    "settings": "设置",
+    "profile": "个人资料",
+    "account": "账户设置",
+    "appearance": "外观设置",
+    "notifications": "通知设置",
+    "display": "显示设置"
+  }
 }

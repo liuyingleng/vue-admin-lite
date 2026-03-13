@@ -32,10 +32,12 @@ const teams: Team[] = [
   },
 ]
 
-const { navData } = useSidebar()
+export function getSidebarData() {
+  const { navData } = useSidebar()
 
-export const sidebarData: SidebarData = {
-  user,
-  teams,
-  navMain: navData.value!,
+  return computed<SidebarData>(() => ({
+    user,
+    teams,
+    navMain: navData.value,
+  }))
 }
